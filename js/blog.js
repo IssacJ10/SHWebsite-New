@@ -1,5 +1,5 @@
 /* =====================================================================
-   SH ELEVATE — Insights/Blog: listing + full-screen reader overlay
+   SH ELEVATE — Insights/Blog: listing + full-screen reader overlays
    ===================================================================== */
 (function () {
   "use strict";
