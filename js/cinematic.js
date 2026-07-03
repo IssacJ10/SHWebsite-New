@@ -33,8 +33,8 @@
     const extra = extraSel ? hero.querySelector(extraSel) : null;
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: hero, start: "top top", end: "+=90%",
-        pin: true, scrub: 0.3, anticipatePin: 1, invalidateOnRefresh: true,
+        trigger: hero, start: "top top", end: "+=70%",
+        pin: true, scrub: 0.6, anticipatePin: 1, invalidateOnRefresh: true,
       },
     });
     if (img) tl.fromTo(img, { scale: 1.02 }, { scale: 1.3, ease: "none" }, 0);
@@ -49,7 +49,7 @@
     const sec = img.closest("section");
     gsap.fromTo(img, { scale: 1.04 }, {
       scale: 1.2, ease: "none",
-      scrollTrigger: { trigger: sec, start: "top bottom", end: "bottom top", scrub: true },
+      scrollTrigger: { trigger: sec, start: "top bottom", end: "bottom top", scrub: 0.6 },
     });
   });
 
@@ -73,7 +73,7 @@
     const box = img.parentElement;
     gsap.fromTo(img, { yPercent: -8 }, {
       yPercent: 8, ease: "none",
-      scrollTrigger: { trigger: box, start: "top bottom", end: "bottom top", scrub: true },
+      scrollTrigger: { trigger: box, start: "top bottom", end: "bottom top", scrub: 0.6 },
     });
   });
 

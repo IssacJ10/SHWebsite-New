@@ -20,10 +20,10 @@
   let lenis = null;
   if (typeof window.Lenis !== "undefined" && !reduce && !isTouch) {
     lenis = new Lenis({
-      lerp: 0.09,
+      lerp: 0.1,
+      wheelMultiplier: 1.1,
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.5,
+      syncTouch: false,
     });
     window.__lenis = lenis;
 
@@ -101,6 +101,59 @@
   );
   document.querySelectorAll("[data-reveal], .clip-line").forEach((el) => io.observe(el));
 
+  /* ---------------- Premium heading reveal (word-by-word blur-rise) ----------------
+     Splits display + section headings into masked words. Hero headings fire as the
+     loading intro lifts; the rest reveal on scroll. Inline markup (e.g. .serif-em)
+     is preserved as an atomic word so accent colours survive. */
+  function splitHeading(el) {
+    if (el.dataset.split) return;
+    el.dataset.split = "1";
+    const nodes = [...el.childNodes];
+    el.textContent = "";
+    let wi = 0;
+    const wrap = (child) => {
+      const w = document.createElement("span"); w.className = "rw";
+      const i = document.createElement("span"); i.className = "rw-i";
+      i.style.transitionDelay = (wi++ * 0.045).toFixed(3) + "s";
+      i.appendChild(child); w.appendChild(i); el.appendChild(w);
+    };
+    nodes.forEach((node) => {
+      if (node.nodeType === 3) {
+        node.textContent.split(/(\s+)/).forEach((tok) => {
+          if (tok === "") return;
+          if (/^\s+$/.test(tok)) { el.appendChild(document.createTextNode(tok)); return; }
+          wrap(document.createTextNode(tok));
+        });
+      } else {
+        wrap(node);
+      }
+    });
+  }
+  const headings = [...document.querySelectorAll(".display, .h-section")]
+    .filter((el) => !el.closest(".film, .film-loader"));
+  headings.forEach(splitHeading);
+  const scrollHeads = headings.filter((el) => !el.closest(".hero, .page-hero"));
+  const headIO = new IntersectionObserver(
+    (entries) => entries.forEach((en) => {
+      if (en.isIntersecting) { en.target.classList.add("in"); headIO.unobserve(en.target); }
+    }),
+    { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+  );
+  scrollHeads.forEach((el) => headIO.observe(el));
+
+  /* ---------------- Hero entrance (coordinated with the loading intro) ---------------- */
+  const heroes = document.querySelectorAll(".hero, .page-hero");
+  const revealHeroes = () => heroes.forEach((h) => {
+    h.classList.add("sh-reveal");
+    h.querySelectorAll(".display, .h-section").forEach((x) => x.classList.add("in"));
+  });
+  if (document.getElementById("film-loader") && !reduce) {
+    window.addEventListener("sh:loaded", revealHeroes, { once: true });
+    setTimeout(revealHeroes, 3200); // safety net if the loader event never fires
+  } else {
+    requestAnimationFrame(() => requestAnimationFrame(revealHeroes));
+  }
+
   /* ---------------- Counters ---------------- */
   function animateCount(el) {
     const target = parseFloat(el.dataset.count);
@@ -171,7 +224,7 @@
         document.querySelectorAll(sel).forEach((el) => {
           gsap.to(el, {
             yPercent: amt, ease: "none",
-            scrollTrigger: { trigger: el.closest("section") || el, start: "top bottom", end: "bottom top", scrub: true },
+            scrollTrigger: { trigger: el.closest("section") || el, start: "top bottom", end: "bottom top", scrub: 0.6 },
           });
         });
       };
@@ -182,7 +235,7 @@
       document.querySelectorAll("[data-img-parallax]").forEach((el) => {
         gsap.fromTo(el, { yPercent: -8 }, {
           yPercent: 8, ease: "none",
-          scrollTrigger: { trigger: el.closest("section, .frame, .why-media, .philo-media") || el, start: "top bottom", end: "bottom top", scrub: true },
+          scrollTrigger: { trigger: el.closest("section, .frame, .why-media, .philo-media") || el, start: "top bottom", end: "bottom top", scrub: 0.6 },
         });
       });
     }

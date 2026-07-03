@@ -399,17 +399,36 @@ em.gold, .gold-text { color: var(--gold-light); font-style: normal; }
   100% { opacity: 1; transform: translateY(-3%) scale(1.06); }
 }
 .hero-inner { position: relative; z-index: 3; width: 100%; padding-top: 96px; }
-.hero-eyebrow { margin-bottom: clamp(20px, 3vw, 34px); opacity: 0; transform: translateY(26px); animation: heroFade 1s var(--ease) 0.7s forwards; }
 .hero h1 { max-width: 16ch; margin-bottom: clamp(22px, 3vw, 34px); }
-.hero h1 .ln { display: block; overflow: hidden; }
-.hero h1 .ln > span { display: block; transform: translateY(112%); animation: heroRise 1.25s var(--ease) forwards; }
-.hero h1 .ln:nth-child(1) > span { animation-delay: 0.35s; }
-.hero h1 .ln:nth-child(2) > span { animation-delay: 0.47s; }
-.hero h1 .ln:nth-child(3) > span { animation-delay: 0.59s; }
-.hero p.lede { margin-bottom: clamp(30px, 4vw, 46px); opacity: 0; transform: translateY(26px); animation: heroFade 1s var(--ease) 0.84s forwards; }
-.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; opacity: 0; transform: translateY(26px); animation: heroFade 1s var(--ease) 0.98s forwards; }
-@keyframes heroRise { to { transform: translateY(0); } }
-@keyframes heroFade { to { opacity: 1; transform: none; } }
+.hero-eyebrow { margin-bottom: clamp(20px, 3vw, 34px); }
+.hero p.lede { margin-bottom: clamp(30px, 4vw, 46px); }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* ── Premium hero/page-hero entrance — content is hidden until the section gets
+   .sh-reveal (added by site.js as the loading intro lifts, or on load elsewhere). ── */
+.hero .hero-eyebrow, .page-hero .hero-eyebrow,
+.hero .lede, .page-hero .lede,
+.hero .hero-actions, .page-hero .hero-actions,
+.page-hero .breadcrumb {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.hero .lede, .page-hero .lede { transition-delay: 0.14s; }
+.hero .hero-actions, .page-hero .hero-actions { transition-delay: 0.24s; }
+.hero.sh-reveal .hero-eyebrow, .hero.sh-reveal .lede, .hero.sh-reveal .hero-actions,
+.page-hero.sh-reveal .hero-eyebrow, .page-hero.sh-reveal .lede,
+.page-hero.sh-reveal .hero-actions, .page-hero.sh-reveal .breadcrumb {
+  opacity: 1; transform: none;
+}
+
+/* ── Word-by-word blur-rise for display + section headings (premium reveal) ── */
+.rw { display: inline-block; }
+.rw-i {
+  display: inline-block;
+  transform: translateY(0.42em); opacity: 0; filter: blur(7px);
+  transition: transform 0.82s var(--ease), opacity 0.6s ease, filter 0.6s ease;
+}
+[data-split].in .rw-i { transform: none; opacity: 1; filter: blur(0); }
 .scroll-ind {
   position: absolute; left: var(--gutter); bottom: 30px; z-index: 3;
   display: flex; align-items: center; gap: 12px;
@@ -665,8 +684,9 @@ em.gold, .gold-text { color: var(--gold-light); font-style: normal; }
   .hero-light, .scroll-ind .line::after { animation: none; }
   [data-reveal] { opacity: 1; transform: none; transition: none; }
   .clip-line > span { transform: none; }
-  .hero-eyebrow, .hero p.lede, .hero-actions { opacity: 1; transform: none; animation: none; }
-  .hero h1 .ln > span { transform: none; animation: none; }
+  .rw-i { opacity: 1; transform: none; filter: none; transition: none; }
+  .hero .hero-eyebrow, .page-hero .hero-eyebrow, .hero .lede, .page-hero .lede,
+  .hero .hero-actions, .page-hero .hero-actions, .page-hero .breadcrumb { opacity: 1; transform: none; transition: none; }
   .page-curtain { display: none !important; }
 }
 

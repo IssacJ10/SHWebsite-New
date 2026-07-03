@@ -23,6 +23,7 @@
       if (finished) return; finished = true;
       pctEl.textContent = "100"; barEl.style.width = "100%";
       loader.classList.add("done");
+      window.dispatchEvent(new Event("sh:loaded"));   // cue the hero entrance
       if (lenis) lenis.start();
       document.body.style.overflow = "";
       setTimeout(() => loader && loader.remove(), 1000);
@@ -94,7 +95,7 @@
   ScrollTrigger.create({
     trigger: ".film",
     start: "top top",
-    end: "+=" + (N * (lite ? 60 : 110)) + "%",
+    end: "+=" + (N * (lite ? 55 : 90)) + "%",
     pin: ".film-stage",
     scrub: lite ? 0.35 : 0.6,
     onUpdate: (self) => paint(self.progress),
