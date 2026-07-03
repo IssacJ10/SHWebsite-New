@@ -9,9 +9,9 @@
   const A = [
     {
       slug: "how-to-file-t1-personal-tax-return-canada",
-      title: "How to File Your T1 Personal Tax Return in Canada: Complete 2025 Guide",
-      category: "Personal Tax", readTime: "12 min read", date: "2025-02-10",
-      excerpt: "A step-by-step guide to filing your T1 personal income tax return with the CRA — deadlines, required documents, common deductions, and how to maximize your refund.",
+      title: "How to File Your T1 Tax Return in Canada (2026): A Step-by-Step Guide",
+      category: "Personal Tax", readTime: "12 min read", date: "2026-02-09",
+      excerpt: "A clear, step-by-step guide to filing your 2025 T1 return in 2026: slips to gather, NETFILE vs paper, the April 30 deadline, late-filing penalties, and refund timing.",
       intro: "Filing your T1 personal income tax return is an annual requirement for most Canadian residents. Whether you earned employment income, self-employment income, investment income, or any combination, the Canada Revenue Agency (CRA) requires you to report your worldwide income each year. This comprehensive guide walks you through everything you need to know to file your T1 correctly and maximize your refund.",
       body: [
         { h: "Who Needs to File a T1 Return?", p: ["You must file a T1 return if you owe tax for the year, if the CRA sent you a request to file, if you disposed of capital property, or if you want to claim a refund. Even if you had no income, filing is often beneficial to maintain eligibility for benefits like the GST/HST credit, Canada Child Benefit, and provincial programs.", "Canadian residents are taxed on their worldwide income regardless of where it was earned. Non-residents who earned Canadian-source income may also need to file."] },
@@ -23,9 +23,9 @@
     },
     {
       slug: "corporate-tax-t2-guide-small-business",
-      title: "Corporate Tax in Canada: The Complete T2 Filing Guide for Small Businesses",
-      category: "Corporate Tax", readTime: "15 min read", date: "2025-02-05",
-      excerpt: "Everything small business owners need to know about T2 corporate tax returns. Filing deadlines, eligible deductions, CCPC benefits, and tax planning strategies.",
+      title: "T2 Corporate Tax Return Guide for Small Business (2026)",
+      category: "Corporate Tax", readTime: "15 min read", date: "2026-02-04",
+      excerpt: "Your 2026 T2 corporate tax return guide: who must file, the 6-month deadline, when to pay, the small business deduction (~11.2% in Ontario), deductions and instalments.",
       intro: "If you operate a corporation in Canada, filing a T2 corporate income tax return is mandatory — even if the corporation had no income or was inactive during the tax year. The T2 return is substantially more complex than a personal T1 return, and errors can lead to penalties, reassessments, and missed tax-saving opportunities. This guide covers everything small business owners need to know.",
       body: [
         { h: "Filing Deadlines and Penalties", p: ["A T2 return must be filed within six months of the corporation's fiscal year-end. For example, if your fiscal year ends December 31, your T2 is due June 30. However, any balance owing must be paid within two months of the year-end (three months for certain CCPCs with taxable income under $500,000).", "Late filing triggers a penalty of 5% of the unpaid tax, plus 1% per month for up to 12 months. For repeat offenders, penalties double. The CRA takes corporate filing seriously, so timely filing is essential."] },
@@ -36,9 +36,9 @@
     },
     {
       slug: "gst-hst-registration-filing-guide",
-      title: "GST/HST Registration & Filing: When You Need It and How to Do It",
-      category: "GST/HST", readTime: "10 min read", date: "2025-01-28",
-      excerpt: "When do you need to register for GST/HST? How do you file returns? Learn about thresholds, ITCs, filing frequencies, and common mistakes to avoid.",
+      title: "GST/HST Registration and Filing Guide (2026)",
+      category: "GST/HST", readTime: "10 min read", date: "2026-01-27",
+      excerpt: "Your 2026 GST/HST guide: the $30,000 small-supplier threshold, the 29-day window to register, how to get a BN and RT account, filing frequencies, and ITCs.",
       intro: "The Goods and Services Tax (GST) and Harmonized Sales Tax (HST) are consumption taxes that apply to most goods and services sold in Canada. If you run a business, understanding when to register, how to collect, and how to file is critical for staying compliant with the CRA. This guide covers everything from the small supplier threshold to input tax credits.",
       body: [
         { h: "The Small Supplier Threshold: $30,000", p: ["You must register for GST/HST if your total taxable revenue exceeds $30,000 in a single calendar quarter or over four consecutive calendar quarters. This is known as the small supplier threshold. Once you exceed it, you must register within 29 days.", "Even if you are below the threshold, you may want to register voluntarily — because registered businesses can claim Input Tax Credits (ITCs) to recover the GST/HST paid on business purchases. If your business has significant startup costs or ongoing expenses, voluntary registration can result in net refunds from the CRA."] },
@@ -49,9 +49,9 @@
     },
     {
       slug: "top-tax-deductions-self-employed-canada",
-      title: "Top 15 Tax Deductions for Self-Employed Canadians in 2025",
-      category: "Deductions", readTime: "11 min read", date: "2025-01-20",
-      excerpt: "Maximize your tax savings as a self-employed Canadian. From home office expenses to vehicle costs, here are the deductions the CRA allows that most freelancers miss.",
+      title: "Self-Employed Tax Deductions in Canada: Your 2026 Checklist",
+      category: "Deductions", readTime: "11 min read", date: "2026-01-19",
+      excerpt: "A plain-English 2026 checklist of self-employed tax deductions in Canada: T2125, home office (detailed method), vehicle, meals, CPP, and the six-year records rule.",
       intro: "Self-employed Canadians — freelancers, contractors, consultants, and gig workers — have access to a wide range of tax deductions that salaried employees cannot claim. These deductions are reported on Form T2125 (Statement of Business or Professional Activities) and can dramatically reduce your taxable income. Here are the top 15 deductions you should know about.",
       body: [
         { h: "1. Home Office Expenses", p: ["If you use a dedicated space in your home regularly and exclusively for business, you can deduct a proportionate share of your household expenses — rent or mortgage interest, property taxes, utilities, home insurance, and maintenance. The deduction is calculated based on the percentage of your home used for business.", "The CRA also offers a simplified flat-rate method: $2 per day worked from home, up to $500 per year. For most self-employed individuals, the detailed method yields a larger deduction."] },
@@ -63,9 +63,9 @@
     },
     {
       slug: "northern-residents-deduction-guide",
-      title: "Northern Residents Deduction: Complete Guide for Remote Canadian Communities",
-      category: "Deductions", readTime: "9 min read", date: "2025-01-15",
-      excerpt: "Living in Northern Ontario, Newfoundland, or other prescribed zones? Learn how the Northern Residents Deduction works, who qualifies, and how to claim it on your T1.",
+      title: "Northern Residents Deduction (2026): Who Qualifies and How to Claim It",
+      category: "Deductions", readTime: "9 min read", date: "2026-01-14",
+      excerpt: "Northern Residents Deduction 2026: who qualifies, the two zones, the residency and travel amounts, and how to claim on Form T2222 and Line 25500 of your T1.",
       intro: "The Northern Residents Deduction (NRD) is one of the most valuable — and most overlooked — tax benefits for Canadians living in northern and remote communities. If you live in a prescribed northern or intermediate zone for at least six consecutive months, you may be entitled to deductions that can save hundreds or even thousands of dollars. This is especially relevant for our clients in Thunder Bay, Timmins, Sudbury, Sault Ste. Marie, Corner Brook, and Grande Prairie.",
       body: [
         { h: "Who Qualifies?", p: ["To claim the NRD, you must have lived in a prescribed northern or intermediate zone for a continuous period of at least six months. The CRA maintains a list of prescribed zones. Northern zones include most of Northern Ontario, much of Newfoundland and Labrador, northern Alberta, and the territories. Intermediate zones cover areas like Sudbury, Sault Ste. Marie, and some parts of southern Newfoundland.", "The deduction has two components: a residency amount and a travel benefit amount. You can claim both if eligible."] },
@@ -76,9 +76,9 @@
     },
     {
       slug: "incorporating-business-ontario-guide",
-      title: "How to Incorporate Your Business in Ontario: Step-by-Step Guide",
-      category: "Incorporation", readTime: "13 min read", date: "2025-01-08",
-      excerpt: "A practical guide to incorporating a business in Ontario — NUANS name searches, articles of incorporation, CRA program accounts, and ongoing compliance.",
+      title: "How to Incorporate a Business in Ontario: A 2026 Step-by-Step Guide",
+      category: "Incorporation", readTime: "13 min read", date: "2026-01-07",
+      excerpt: "Federal vs. Ontario incorporation in 2026: real government fees (~$380 provincial vs ~$530 federal), NUANS name search, articles, and CRA program accounts explained.",
       intro: "Incorporating a business in Ontario is one of the most impactful financial decisions an entrepreneur can make. A corporation provides limited liability protection, access to the small business tax rate (approximately 12.2% in Ontario), income splitting opportunities, and enhanced credibility with clients and lenders. This guide walks you through every step of the process.",
       body: [
         { h: "Federal vs. Provincial Incorporation", p: ["You can incorporate federally through Corporations Canada or provincially through the Ontario Business Registry. Federal incorporation gives you the right to operate under your corporate name across all provinces but requires extra-provincial registration in each province you do business in. Provincial incorporation is simpler and less expensive but limits your name protection to Ontario.", "For most small businesses operating primarily in Ontario — including those in Thunder Bay, Hamilton, London, and Sudbury — provincial incorporation is sufficient and more cost-effective."] },
