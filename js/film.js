@@ -30,7 +30,7 @@
       if (window.ScrollTrigger) ScrollTrigger.refresh();
     };
 
-    const dur = 1700, t0 = performance.now();
+    const dur = 850, t0 = performance.now();
     (function tick(now) {
       const k = Math.min(1, ((now || performance.now()) - t0) / dur);
       const p = Math.round((1 - Math.pow(1 - k, 2)) * 100);

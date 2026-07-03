@@ -207,6 +207,35 @@
       });
       btn.addEventListener("mouseleave", () => { btn.style.transform = ""; });
     });
+
+    /* ---------------- Premium card tilt + cursor spotlight ----------------
+       Feeds CSS custom props; the visual treatment lives in site.css so it
+       stays disabled on touch / reduced-motion automatically. */
+    const bindCard = (card, tilt) => {
+      let ticking = false, lastE = null;
+      const apply = () => {
+        ticking = false;
+        const r = card.getBoundingClientRect();
+        const px = (lastE.clientX - r.left) / r.width;
+        const py = (lastE.clientY - r.top) / r.height;
+        card.style.setProperty("--mx", (px * 100).toFixed(1) + "%");
+        card.style.setProperty("--my", (py * 100).toFixed(1) + "%");
+        if (tilt) {
+          card.style.setProperty("--rx", ((0.5 - py) * 5).toFixed(2) + "deg");
+          card.style.setProperty("--ry", ((px - 0.5) * 5).toFixed(2) + "deg");
+        }
+      };
+      card.addEventListener("mousemove", (e) => {
+        lastE = e;
+        if (!ticking) { ticking = true; requestAnimationFrame(apply); }
+      });
+      if (tilt) card.addEventListener("mouseleave", () => {
+        card.style.setProperty("--rx", "0deg");
+        card.style.setProperty("--ry", "0deg");
+      });
+    };
+    document.querySelectorAll(".svc-card").forEach((c) => bindCard(c, true));
+    document.querySelectorAll(".tri-card, .rep-card, .blog-card, .related-card, .city-card").forEach((c) => bindCard(c, false));
   }
 
   /* ---------------- GSAP ScrollTrigger effects ---------------- */
