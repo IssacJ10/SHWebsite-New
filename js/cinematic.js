@@ -24,25 +24,23 @@
 
   const k = 1;
 
-  /* ---------- 1) PINNED HERO SCENE (the headline cinematic move) ---------- */
-  function cineHero(heroSel, imgSel, innerSel, extraSel) {
+  /* ---------- 1) HERO — natural scroll, no pin ----------
+     The header scrolls away like any normal section. The photo eases in a gentle
+     scale as you scroll past it, for a whisper of depth — but the page is never
+     "held", so the scroll stays completely natural. Scale-only never exposes the
+     image edges, so it's safe on every hero/page-hero. */
+  function cineHero(heroSel, imgSel) {
     const hero = document.querySelector(heroSel);
     if (!hero) return;
     const img = hero.querySelector(imgSel);
-    const inner = hero.querySelector(innerSel);
-    const extra = extraSel ? hero.querySelector(extraSel) : null;
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: hero, start: "top top", end: "+=75%",
-        pin: true, scrub: 0.3, anticipatePin: 1, invalidateOnRefresh: true,
-      },
+    if (!img) return;
+    gsap.fromTo(img, { scale: 1.0 }, {
+      scale: 1.12, ease: "none",
+      scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true },
     });
-    if (img) tl.fromTo(img, { scale: 1.02 }, { scale: 1.3, ease: "none" }, 0);
-    if (inner) tl.fromTo(inner, { y: 0, opacity: 1 }, { y: -130, opacity: 0, ease: "none" }, 0);
-    if (extra) tl.fromTo(extra, { opacity: 1 }, { opacity: 0, ease: "none" }, 0);
   }
-  cineHero(".hero", ".hero-bg img", ".hero-inner", ".scroll-ind");
-  cineHero(".page-hero", ".page-hero-bg img", ".page-hero-inner");
+  cineHero(".hero", ".hero-bg img");
+  cineHero(".page-hero", ".page-hero-bg img");
 
   /* ---------- 2) Scrubbed zoom on full-bleed mid-page image bands ---------- */
   gsap.utils.toArray(".stats-bg img, .contact-bg img").forEach((img) => {
