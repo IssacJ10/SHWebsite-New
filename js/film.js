@@ -95,7 +95,7 @@
   ScrollTrigger.create({
     trigger: ".film",
     start: "top top",
-    end: "+=" + (N * (lite ? 55 : 90)) + "%",
+    end: "+=" + (N * (lite ? 60 : 110)) + "%",
     pin: ".film-stage",
     scrub: lite ? 0.35 : 0.6,
     onUpdate: (self) => paint(self.progress),

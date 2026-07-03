@@ -20,10 +20,9 @@
   let lenis = null;
   if (typeof window.Lenis !== "undefined" && !reduce && !isTouch) {
     lenis = new Lenis({
-      lerp: 0.1,
-      wheelMultiplier: 1.1,
+      lerp: 0.08,
+      wheelMultiplier: 1,
       smoothWheel: true,
-      syncTouch: false,
     });
     window.__lenis = lenis;
 
@@ -253,7 +252,7 @@
         document.querySelectorAll(sel).forEach((el) => {
           gsap.to(el, {
             yPercent: amt, ease: "none",
-            scrollTrigger: { trigger: el.closest("section") || el, start: "top bottom", end: "bottom top", scrub: 0.6 },
+            scrollTrigger: { trigger: el.closest("section") || el, start: "top bottom", end: "bottom top", scrub: true },
           });
         });
       };
@@ -264,7 +263,7 @@
       document.querySelectorAll("[data-img-parallax]").forEach((el) => {
         gsap.fromTo(el, { yPercent: -8 }, {
           yPercent: 8, ease: "none",
-          scrollTrigger: { trigger: el.closest("section, .frame, .why-media, .philo-media") || el, start: "top bottom", end: "bottom top", scrub: 0.6 },
+          scrollTrigger: { trigger: el.closest("section, .frame, .why-media, .philo-media") || el, start: "top bottom", end: "bottom top", scrub: true },
         });
       });
     }
