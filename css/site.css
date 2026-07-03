@@ -1204,3 +1204,38 @@ em.gold, .gold-text { color: var(--gold-light); font-style: normal; }
   .svc-card::before, .tri-card::after, .rep-card::after,
   .blog-card::after, .related-card::after, .city-card::after { display: none; }
 }
+
+/* =====================================================================
+   Click-to-call QR (desktop) — a desktop click on a phone number opens a
+   small card with a scannable "call from your phone" QR. Injected once by
+   chrome.js; only wired on non-touch devices (phones dial tel: natively).
+   ===================================================================== */
+.callpop { position: fixed; inset: 0; z-index: 1200; display: grid; place-items: center;
+  opacity: 0; visibility: hidden; transition: opacity .32s var(--ease), visibility .32s var(--ease); }
+.callpop.open { opacity: 1; visibility: visible; }
+.callpop-backdrop { position: absolute; inset: 0; background: rgba(3, 12, 29, .60);
+  -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px); }
+.callpop-card { position: relative; width: min(92vw, 344px); background: #fff; border-radius: 24px;
+  padding: 34px 30px 28px; text-align: center;
+  box-shadow: 0 44px 100px -34px rgba(3, 12, 29, .62), 0 0 0 1px rgba(6, 32, 67, .06);
+  transform: translateY(16px) scale(.965); transition: transform .5s var(--ease); }
+.callpop.open .callpop-card { transform: none; }
+.callpop-close { position: absolute; top: 13px; right: 13px; width: 34px; height: 34px; border: none;
+  background: var(--surface-2); color: var(--navy-900); border-radius: 50%; font-size: 21px; line-height: 1;
+  cursor: pointer; transition: background .2s var(--ease); }
+.callpop-close:hover { background: var(--surface-hover); }
+.callpop-eyebrow { font-family: var(--sans); font-size: .70rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.callpop-qr { width: 188px; height: 188px; margin: 0 auto; padding: 13px; background: #fff; border-radius: 16px;
+  box-shadow: inset 0 0 0 1px rgba(6, 32, 67, .09); }
+.callpop-qr img { width: 100%; height: 100%; display: block; }
+.callpop-hint { font-family: var(--sans); font-size: .88rem; color: var(--ivory-dim); margin: 18px 0 6px; }
+.callpop-num { display: inline-block; font-family: var(--serif); font-size: 1.34rem; font-weight: 700;
+  color: var(--navy-900); text-decoration: none; letter-spacing: .01em; }
+.callpop-copy { margin-top: 18px; display: inline-flex; align-items: center; gap: 7px; font-family: var(--sans);
+  font-size: .82rem; font-weight: 600; color: var(--gold); background: var(--surface-2);
+  border: 1px solid var(--line-soft); padding: 9px 17px; border-radius: 999px; cursor: pointer;
+  transition: background .2s var(--ease), color .2s var(--ease); }
+.callpop-copy:hover { background: var(--gold); color: #fff; }
+.callpop-copy.copied { background: #1c7a4a; color: #fff; border-color: transparent; }
+@media (prefers-reduced-motion: reduce) { .callpop, .callpop-card { transition: opacity .2s linear; } }

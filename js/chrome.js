@@ -199,4 +199,74 @@
     curtain.classList.add("cover", "drop");
     setTimeout(() => { window.location.href = href; }, 560);
   });
+
+  /* ---------------- Click-to-call QR (desktop only) ----------------
+     On a phone, tapping a tel: link dials natively — leave it alone. On a
+     desktop (no dialer), a click is a dead end, so intercept it and show a
+     "scan to call from your phone" QR instead. */
+  const canDial = window.matchMedia("(pointer: coarse)").matches;
+  if (!canDial) {
+    const pop = document.createElement("div");
+    pop.className = "callpop";
+    pop.setAttribute("role", "dialog");
+    pop.setAttribute("aria-modal", "true");
+    pop.setAttribute("aria-label", "Call SH Elevate Financial Group");
+    pop.innerHTML = `
+      <div class="callpop-backdrop" data-close></div>
+      <div class="callpop-card">
+        <button class="callpop-close" data-close aria-label="Close">&times;</button>
+        <div class="callpop-eyebrow">Call us</div>
+        <div class="callpop-qr"><img alt="QR code — scan with your phone to call" width="188" height="188" /></div>
+        <p class="callpop-hint">Point your phone camera here to call</p>
+        <a class="callpop-num" href="tel:"></a>
+        <button class="callpop-copy" type="button">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+          <span>Copy number</span>
+        </button>
+      </div>`;
+    document.body.appendChild(pop);
+
+    const qrImg = pop.querySelector(".callpop-qr img");
+    const numEl = pop.querySelector(".callpop-num");
+    const copyBtn = pop.querySelector(".callpop-copy");
+    const copyLabel = copyBtn.querySelector("span");
+    let currentTel = "";
+
+    const digitsOf = (tel) => tel.replace(/[^0-9]/g, "");
+    const qrFor = (tel) => P + (digitsOf(tel).endsWith("9029198696") ? "images/call-qr-902.svg" : "images/call-qr-437.svg");
+    const pretty = (tel) => {
+      const d = digitsOf(tel).replace(/^1/, "");
+      return d.length === 10 ? `+1 (${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}` : tel;
+    };
+
+    const onKey = (e) => { if (e.key === "Escape") close(); };
+    function open(tel) {
+      currentTel = tel;
+      qrImg.src = qrFor(tel);
+      numEl.href = "tel:" + tel;
+      numEl.textContent = pretty(tel);
+      copyBtn.classList.remove("copied");
+      copyLabel.textContent = "Copy number";
+      pop.classList.add("open");
+      document.addEventListener("keydown", onKey);
+    }
+    function close() {
+      pop.classList.remove("open");
+      document.removeEventListener("keydown", onKey);
+    }
+
+    pop.addEventListener("click", (e) => { if (e.target.closest("[data-close]")) close(); });
+    copyBtn.addEventListener("click", () => {
+      const done = () => { copyBtn.classList.add("copied"); copyLabel.textContent = "Copied ✓"; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(currentTel).then(done, done);
+      else done();
+    });
+
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="tel:"]');
+      if (!a) return;
+      e.preventDefault();
+      open(a.getAttribute("href").replace(/^tel:/, "").trim());
+    });
+  }
 })();
