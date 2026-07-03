@@ -30,7 +30,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
 <link rel="apple-touch-icon" href="images/favicon-180.png" />
 <link rel="preload" as="image" href="images/logo-white.png" />
-<link rel="preload" as="image" href="images/header.webp" type="image/webp" fetchpriority="high" />
+<link rel="preload" as="image" type="image/webp" imagesrcset="images/header-640.webp 640w, images/header-1024.webp 1024w, images/header.webp 1680w" imagesizes="100vw" fetchpriority="high" />
 <link rel="preload" href="fonts/sora-700.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="fonts/manrope-400.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="css/site.css" />
@@ -56,7 +56,7 @@
 <!-- ===================== HERO BANNER ===================== -->
 <section class="hero" id="top" data-screen-label="Hero">
   <div class="hero-bg">
-    <picture><source type="image/webp" srcset="images/header.webp" /><img src="images/header.jpg" alt="Modern glass skyscraper reflecting golden light"  decoding="async"/></picture>
+    <picture><source type="image/webp" srcset="images/header-640.webp 640w, images/header-1024.webp 1024w, images/header.webp 1680w" sizes="100vw" /><img src="images/header.jpg" alt="Modern glass skyscraper reflecting golden light"  decoding="async" srcset="images/header-640.jpg 640w, images/header-1024.jpg 1024w, images/header.jpg 1680w" sizes="100vw" /></picture>
   </div>
   <div class="hero-light"></div>
   <div class="hero-light b"></div>
@@ -83,10 +83,10 @@
 <section class="film" id="process" data-screen-label="The Film">
   <div class="film-stage">
     <div class="film-bg">
-      <div class="chapter-img"><picture><source type="image/webp" srcset="images/discussion.webp" /><img src="images/discussion.jpg" alt="Discovery consultation"  decoding="async" loading="lazy"/></picture></div>
-      <div class="chapter-img"><picture><source type="image/webp" srcset="images/office.webp" /><img src="images/office.jpg" alt="Comprehensive analysis"  decoding="async" loading="lazy"/></picture></div>
-      <div class="chapter-img"><picture><source type="image/webp" srcset="images/welcome.webp" /><img src="images/welcome.jpg" alt="Tailored strategy"  decoding="async" loading="lazy"/></picture></div>
-      <div class="chapter-img"><picture><source type="image/webp" srcset="images/toronto.webp" /><img src="images/toronto.jpg" alt="Ongoing partnership"  decoding="async" loading="lazy"/></picture></div>
+      <div class="chapter-img"><picture><source type="image/webp" srcset="images/discussion-640.webp 640w, images/discussion-1024.webp 1024w, images/discussion.webp 1680w" sizes="100vw" /><img src="images/discussion.jpg" alt="Discovery consultation"  decoding="async" loading="lazy" srcset="images/discussion-640.jpg 640w, images/discussion-1024.jpg 1024w, images/discussion.jpg 1680w" sizes="100vw" /></picture></div>
+      <div class="chapter-img"><picture><source type="image/webp" srcset="images/office-640.webp 640w, images/office-1024.webp 1024w, images/office.webp 1680w" sizes="100vw" /><img src="images/office.jpg" alt="Comprehensive analysis"  decoding="async" loading="lazy" srcset="images/office-640.jpg 640w, images/office-1024.jpg 1024w, images/office.jpg 1680w" sizes="100vw" /></picture></div>
+      <div class="chapter-img"><picture><source type="image/webp" srcset="images/welcome-640.webp 640w, images/welcome-1024.webp 1024w, images/welcome.webp 1680w" sizes="100vw" /><img src="images/welcome.jpg" alt="Tailored strategy"  decoding="async" loading="lazy" srcset="images/welcome-640.jpg 640w, images/welcome-1024.jpg 1024w, images/welcome.jpg 1680w" sizes="100vw" /></picture></div>
+      <div class="chapter-img"><picture><source type="image/webp" srcset="images/toronto-640.webp 640w, images/toronto-1024.webp 1024w, images/toronto.webp 1680w" sizes="100vw" /><img src="images/toronto.jpg" alt="Ongoing partnership"  decoding="async" loading="lazy" srcset="images/toronto-640.jpg 640w, images/toronto-1024.jpg 1024w, images/toronto.jpg 1680w" sizes="100vw" /></picture></div>
     </div>
     <div class="film-content">
       <div class="chapter-text">
@@ -134,7 +134,7 @@
     </div>
     <div class="philo-media" data-reveal>
       <div class="frame">
-        <picture><source type="image/webp" srcset="images/discussion.webp" /><img data-img-parallax src="images/discussion.jpg" alt="Professional team discussing financial strategy"  decoding="async" loading="lazy"/></picture>
+        <picture><source type="image/webp" srcset="images/discussion-640.webp 640w, images/discussion-1024.webp 1024w, images/discussion.webp 1680w" sizes="(max-width: 1024px) 100vw, 50vw" /><img data-img-parallax src="images/discussion.jpg" alt="Professional team discussing financial strategy"  decoding="async" loading="lazy" srcset="images/discussion-640.jpg 640w, images/discussion-1024.jpg 1024w, images/discussion.jpg 1680w" sizes="(max-width: 1024px) 100vw, 50vw" /></picture>
       </div>
       <div class="stat-badge">
         <div class="num" style="font-size:clamp(1.7rem,2.5vw,2.2rem);line-height:1.05;">CRA-<br>Compliant</div>
@@ -154,28 +154,28 @@
     </div>
     <div class="svc-grid">
       <a class="svc-card" href="services-personal-tax.html" data-reveal>
-        <div class="svc-bg"><picture><source type="image/webp" srcset="images/card1.webp" /><img data-img-parallax src="images/card1.jpg" alt="Personal Tax Services"  decoding="async" loading="lazy"/></picture></div>
+        <div class="svc-bg"><picture><source type="image/webp" srcset="images/card1-640.webp 640w, images/card1-1024.webp 1024w, images/card1.webp 1680w" sizes="(max-width: 1024px) 100vw, 50vw" /><img data-img-parallax src="images/card1.jpg" alt="Personal Tax Services"  decoding="async" loading="lazy" srcset="images/card1-640.jpg 640w, images/card1-1024.jpg 1024w, images/card1.jpg 1680w" sizes="(max-width: 1024px) 100vw, 50vw" /></picture></div>
         <span class="svc-num">01</span>
         <h3>Personal Tax Services</h3>
         <p>Comprehensive personal tax including T1 Income Tax Returns and accurate reporting for self-employed and freelance income. We assist newcomers, students, and families — ensuring compliance and maximizing eligible benefits.</p>
         <span class="svc-more">Learn More <span class="btn-arrow">→</span></span>
       </a>
       <a class="svc-card" href="services-corporate-tax.html" data-reveal data-reveal-delay="1">
-        <div class="svc-bg"><picture><source type="image/webp" srcset="images/card2.webp" /><img data-img-parallax src="images/card2.jpg" alt="Corporate Tax Services"  decoding="async" loading="lazy"/></picture></div>
+        <div class="svc-bg"><picture><source type="image/webp" srcset="images/card2-640.webp 640w, images/card2-1024.webp 1024w, images/card2.webp 1680w" sizes="(max-width: 1024px) 100vw, 50vw" /><img data-img-parallax src="images/card2.jpg" alt="Corporate Tax Services"  decoding="async" loading="lazy" srcset="images/card2-640.jpg 640w, images/card2-1024.jpg 1024w, images/card2.jpg 1680w" sizes="(max-width: 1024px) 100vw, 50vw" /></picture></div>
         <span class="svc-num">02</span>
         <h3>Corporate Tax Services</h3>
         <p>T2 Income Tax Returns for small to medium-sized businesses. We help corporations optimize their tax position, stay compliant, and plan for growth — including corporate dividend planning for efficient profit distribution.</p>
         <span class="svc-more">Learn More <span class="btn-arrow">→</span></span>
       </a>
       <a class="svc-card" href="services-gst-hst.html" data-reveal>
-        <div class="svc-bg"><picture><source type="image/webp" srcset="images/card3.webp" /><img data-img-parallax src="images/card3.jpg" alt="GST/HST Registration & Filing"  decoding="async" loading="lazy"/></picture></div>
+        <div class="svc-bg"><picture><source type="image/webp" srcset="images/card3-640.webp 640w, images/card3-1024.webp 1024w, images/card3.webp 1680w" sizes="(max-width: 1024px) 100vw, 50vw" /><img data-img-parallax src="images/card3.jpg" alt="GST/HST Registration & Filing"  decoding="async" loading="lazy" srcset="images/card3-640.jpg 640w, images/card3-1024.jpg 1024w, images/card3.jpg 1680w" sizes="(max-width: 1024px) 100vw, 50vw" /></picture></div>
         <span class="svc-num">03</span>
         <h3>GST / HST Registration &amp; Filing</h3>
         <p>Full support for GST/HST, from registration and setup to filing monthly, quarterly, or annual returns — keeping your business compliant with tax regulations at every interval.</p>
         <span class="svc-more">Learn More <span class="btn-arrow">→</span></span>
       </a>
       <a class="svc-card" href="services-business-incorporation.html" data-reveal data-reveal-delay="1">
-        <div class="svc-bg"><picture><source type="image/webp" srcset="images/card4.webp" /><img data-img-parallax src="images/card4.jpg" alt="Business Incorporation & Registration"  decoding="async" loading="lazy"/></picture></div>
+        <div class="svc-bg"><picture><source type="image/webp" srcset="images/card4-640.webp 640w, images/card4-1024.webp 1024w, images/card4.webp 1680w" sizes="(max-width: 1024px) 100vw, 50vw" /><img data-img-parallax src="images/card4.jpg" alt="Business Incorporation & Registration"  decoding="async" loading="lazy" srcset="images/card4-640.jpg 640w, images/card4-1024.jpg 1024w, images/card4.jpg 1680w" sizes="(max-width: 1024px) 100vw, 50vw" /></picture></div>
         <span class="svc-num">04</span>
         <h3>Business Incorporation &amp; Registration</h3>
         <p>Federal and provincial incorporations, extra-provincial registrations, and NUANS name searches. We guide you through every step for a smooth, compliant launch — plus setup and ongoing filings for CRA program accounts.</p>
@@ -217,7 +217,7 @@
         </div>
       </div>
       <div class="why-media" data-reveal data-reveal-delay="1">
-        <picture><source type="image/webp" srcset="images/TaxSavings.webp" /><img data-img-parallax src="images/TaxSavings.jpg" alt="Modern financial district architecture"  decoding="async" loading="lazy"/></picture>
+        <picture><source type="image/webp" srcset="images/TaxSavings-640.webp 640w, images/TaxSavings-1024.webp 1024w, images/TaxSavings.webp 1353w" sizes="(max-width: 1024px) 100vw, 50vw" /><img data-img-parallax src="images/TaxSavings.jpg" alt="Modern financial district architecture"  decoding="async" loading="lazy" srcset="images/TaxSavings-640.jpg 640w, images/TaxSavings-1024.jpg 1024w, images/TaxSavings.jpg 1353w" sizes="(max-width: 1024px) 100vw, 50vw" /></picture>
         <div class="stat-badge">
           <div class="num" style="font-size:clamp(1.9rem,2.8vw,2.4rem);">Free</div>
           <div class="lbl">Initial consultation</div>
@@ -229,7 +229,7 @@
 
 <!-- ===================== STATS ===================== -->
 <section class="stats" data-screen-label="Stats">
-  <div class="stats-bg"><picture><source type="image/webp" srcset="images/toronto.webp" /><img src="images/toronto.jpg" alt="Toronto cityscape"  decoding="async" loading="lazy"/></picture></div>
+  <div class="stats-bg"><picture><source type="image/webp" srcset="images/toronto-640.webp 640w, images/toronto-1024.webp 1024w, images/toronto.webp 1680w" sizes="100vw" /><img src="images/toronto.jpg" alt="Toronto cityscape"  decoding="async" loading="lazy" srcset="images/toronto-640.jpg 640w, images/toronto-1024.jpg 1024w, images/toronto.jpg 1680w" sizes="100vw" /></picture></div>
   <div class="stats-inner wrap">
     <div class="section-head" style="margin:0 auto;text-align:center;max-width:48ch;">
       <h2 class="h-section" data-reveal>What you can <span class="serif-em">count on.</span></h2>
@@ -282,7 +282,7 @@
 
 <!-- ===================== CONTACT ===================== -->
 <section class="section contact" id="contact" data-screen-label="Contact">
-  <div class="contact-bg"><picture><source type="image/webp" srcset="images/welcome.webp" /><img src="images/welcome.jpg" alt="Luxury office environment"  decoding="async" loading="lazy"/></picture></div>
+  <div class="contact-bg"><picture><source type="image/webp" srcset="images/welcome-640.webp 640w, images/welcome-1024.webp 1024w, images/welcome.webp 1680w" sizes="100vw" /><img src="images/welcome.jpg" alt="Luxury office environment"  decoding="async" loading="lazy" srcset="images/welcome-640.jpg 640w, images/welcome-1024.jpg 1024w, images/welcome.jpg 1680w" sizes="100vw" /></picture></div>
   <div class="wrap">
     <div class="contact-inner">
       <div class="eyebrow" data-reveal>Get In Touch</div>
