@@ -570,6 +570,27 @@ em.gold, .gold-text { color: var(--gold-light); font-style: normal; }
 .svc-card:hover .svc-more .btn-arrow { transform: translateX(6px); }
 .svc-num, .svc-card h3, .svc-card p, .svc-card .svc-more { text-shadow: 0 1px 18px rgba(6,12,26,0.6); }
 
+/* ── Card reveal: a smooth clip "unveil" as it scrolls in (not a fade-blink).
+   The card is progressively uncovered top→bottom while it settles up, and the
+   photo inside eases from a slight zoom — reads as revealing, not appearing.
+   Overrides the generic [data-reveal] fade for these cards. ── */
+.svc-card[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.15s var(--ease), transform 1.15s var(--ease), opacity 0.7s ease,
+              box-shadow 0.6s var(--ease), border-color 0.6s var(--ease);
+  will-change: clip-path, transform;
+}
+.svc-card[data-reveal] .svc-bg img { transform: scale(1.12); transition: transform 1.4s var(--ease); }
+.svc-card[data-reveal].in {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+.svc-card[data-reveal].in .svc-bg img { transform: scale(1); }
+.svc-card[data-reveal].in:hover .svc-bg img { transform: scale(1.075); }
+
 /* =====================================================================
    WHY US
    ===================================================================== */
@@ -1157,8 +1178,7 @@ em.gold, .gold-text { color: var(--gold-light); font-style: normal; }
    ===================================================================== */
 @media (hover: hover) and (pointer: fine) {
   .svc-card {
-    transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-    transition: transform 0.45s var(--ease), box-shadow 0.6s var(--ease), border-color 0.6s var(--ease);
+    transition: box-shadow 0.6s var(--ease), border-color 0.6s var(--ease);
   }
   .svc-card::before {
     content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; border-radius: inherit;
@@ -1183,6 +1203,8 @@ em.gold, .gold-text { color: var(--gold-light); font-style: normal; }
 }
 @media (prefers-reduced-motion: reduce) {
   .svc-card { transform: none !important; }
+  .svc-card[data-reveal] { clip-path: none !important; opacity: 1 !important; }
+  .svc-card[data-reveal] .svc-bg img { transform: none !important; }
   .svc-card::before, .tri-card::after, .rep-card::after,
   .blog-card::after, .related-card::after, .city-card::after { display: none; }
 }
