@@ -100,6 +100,25 @@
   );
   document.querySelectorAll("[data-reveal], .clip-line").forEach((el) => io.observe(el));
 
+  /* Fail-safe for service cards: their photo-wipe reveal must never leave a card
+     hidden. Reveal any card once it's within view, driven by scroll (independent
+     of the IntersectionObserver), plus a one-shot pass shortly after load. */
+  const svcCards = document.querySelectorAll(".svc-card[data-reveal]");
+  const revealSvc = () => {
+    let pending = false;
+    svcCards.forEach((c) => {
+      if (c.classList.contains("in")) return;
+      if (c.getBoundingClientRect().top < window.innerHeight * 0.92) c.classList.add("in");
+      else pending = true;
+    });
+    if (!pending) window.removeEventListener("scroll", revealSvc);
+  };
+  if (svcCards.length) {
+    window.addEventListener("scroll", revealSvc, { passive: true });
+    setTimeout(revealSvc, 400);
+    window.addEventListener("load", () => setTimeout(revealSvc, 100));
+  }
+
   /* ---------------- Premium heading reveal (word-by-word blur-rise) ----------------
      Splits display + section headings into masked words. Hero headings fire as the
      loading intro lifts; the rest reveal on scroll. Inline markup (e.g. .serif-em)
