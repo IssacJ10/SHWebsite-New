@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shelevate.ca/sitemap.xml

@@ -50,7 +50,7 @@
     <a href="${P || "index.html"}" class="nav-logo" aria-label="SH Elevate Financial Group">
       <span class="logo-corner">
         <img class="logo-corner-bg" src="${P}images/curve.png" alt="" aria-hidden="true" />
-        <img class="logo-corner-mark" src="${P}images/shlogo.png" alt="SH Elevate Financial Group" />
+        <img class="logo-corner-mark" src="${P}images/logo-white.png" alt="SH Elevate Financial Group" />
       </span>
     </a>
     <nav class="nav-links">
@@ -108,13 +108,10 @@
     <div class="wrap">
       <div class="footer-top">
         <div class="footer-brand">
-          <img class="logo-img invert" src="${P}images/logo-full.png" alt="SH Elevate Financial Group" />
+          <img class="logo-img" src="${P}images/logo-white.png" alt="SH Elevate Financial Group" width="220" height="141" />
           <p>A trusted Canadian tax and accounting firm built on integrity, accuracy, and client-centered service.</p>
-          <div class="footer-social">
-            <a href="https://linkedin.com" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 102.5 6 2.5 2.5 0 004.98 3.5zM2.9 8.5h4.16V21H2.9zM9.5 8.5h3.99v1.71h.06a4.37 4.37 0 013.94-2.16c4.21 0 4.99 2.77 4.99 6.38V21h-4.16v-5.57c0-1.33 0-3.04-1.85-3.04s-2.13 1.45-2.13 2.94V21H9.5z"/></svg></a>
-            <a href="https://instagram.com" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-            <a href="https://facebook.com" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg></a>
-          </div>
+          <!-- Social links intentionally omitted until real profile URLs are provided. -->
+          <a class="footer-cta-link" href="${P}team.html">Book a free consultation →</a>
         </div>
         <div class="footer-col">
           <h4>Navigation</h4>
@@ -158,7 +155,7 @@
       </div>
       <div class="footer-bar">
         <span>© 2026 SH Elevate Financial Group Inc. All rights reserved.</span>
-        <div class="fb-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><span>shelevate.ca</span></div>
+        <div class="fb-links"><a href="${P}privacy.html">Privacy Policy</a><a href="${P}terms.html">Terms of Service</a><span>shelevate.ca</span></div>
       </div>
     </div>`;
   document.body.appendChild(footer);
@@ -166,7 +163,7 @@
   /* ---------------- PAGE TRANSITION CURTAIN ---------------- */
   const curtain = document.createElement("div");
   curtain.className = "page-curtain";
-  curtain.innerHTML = `<img class="logo-img invert" src="${P}images/logo-mark.png" alt="" /><span class="curtain-bar"></span>`;
+  curtain.innerHTML = `<img class="logo-img" src="${P}images/logo-white.png" alt="" /><span class="curtain-bar"></span>`;
   document.body.appendChild(curtain);
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
