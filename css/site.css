@@ -310,7 +310,17 @@ em.gold, .gold-text { color: var(--gold-light); font-style: normal; }
 .nav-link:hover { color: var(--ivory); }
 .nav-link:hover::after { width: 100%; }
 .nav-right { display: flex; align-items: center; gap: 22px; }
-.nav-phone { font-size: 0.84rem; font-weight: 600; color: var(--gold-light); letter-spacing: 0.03em; }
+/* Phone number → outlined ghost chip (see PHONE AFFORDANCE block for the rest).
+   Digits switch from --gold-light (the LABEL color) to --ivory so they read as a
+   live control, the border makes it a deliberate secondary next to the filled CTA. */
+.nav-phone {
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: 40px; padding: 9px 15px 9px 13px;
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.01em; color: var(--ivory);
+  background: transparent; border: 1px solid var(--line); border-radius: 999px;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease), color 0.25s var(--ease);
+}
+.nav-phone:hover { border-color: var(--gold); background: rgba(255, 255, 255, 0.07); color: var(--gold-light); }
 .nav-cta { padding: 12px 24px; font-size: 0.8rem; }
 .nav-burger { display: none; flex-direction: column; gap: 5px; width: 30px; }
 .nav-burger span { height: 1.5px; background: var(--ivory); transition: 0.4s var(--ease); display: block; }
@@ -1246,3 +1256,82 @@ em.gold, .gold-text { color: var(--gold-light); font-style: normal; }
 .callpop-copy:hover { background: var(--gold); color: #fff; }
 .callpop-copy.copied { background: #1c7a4a; color: #fff; border-color: transparent; }
 @media (prefers-reduced-motion: reduce) { .callpop, .callpop-card { transition: opacity .2s linear; } }
+
+/* =====================================================================
+   PHONE AFFORDANCE — every tel: number reads as tap-to-call.
+   Workflow-judged "Chip": outlined nav chip (rule near .nav-phone above) +
+   glyph-inline footer/mobile + in-content glyph & grow-underline + call-button
+   glyph. All rules key off design tokens + a[href^="tel:"], so ONE set is
+   correct on dark islands (icon=steel-blue, digits=ink) AND light pages
+   (icon/text=navy). Hrefs are never touched → the desktop QR popover and
+   tel: dialing keep working; wrapping digits in <span>+glyph is delegation-safe.
+   ===================================================================== */
+:root {
+  --tel-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6.6 10.8a12 12 0 006.6 6.6l2-2a1 1 0 011-.25 9.5 9.5 0 003 .5 1 1 0 011 1V19a1 1 0 01-1 1A15.5 15.5 0 013 5a1 1 0 011-1h3.3a1 1 0 011 1 9.5 9.5 0 00.5 3 1 1 0 01-.25 1z'/%3E%3C/svg%3E");
+}
+
+/* --- nav chip glyph (chip box rule lives beside .nav-phone) --- */
+.nav-phone .tel-ico { width: 15px; height: 15px; flex-shrink: 0; color: var(--gold); transition: color 0.25s var(--ease); }
+.nav-phone:hover .tel-ico { color: var(--gold-light); }
+
+/* --- footer + mobile menu: glyph + text, real hover (no pill) --- */
+.tel-inline { display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s var(--ease); }
+.tel-inline .tel-ico { width: 14px; height: 14px; flex-shrink: 0; color: var(--gold); transition: color 0.3s var(--ease); }
+.footer-col a.tel-inline { color: var(--ivory-dim); min-height: 32px; }
+.footer-col a.tel-inline:hover { color: var(--ivory); }
+.footer-col a.tel-inline:hover .tel-ico { color: var(--gold-light); }
+.mobile-menu .mm-foot a.tel-inline { color: var(--gold-light); min-height: 44px; }
+.mobile-menu .mm-foot a.tel-inline .tel-ico { color: var(--gold-light); }
+.mobile-menu .mm-foot a.tel-inline:active { opacity: 0.6; }
+
+/* --- in-content tel links: masked glyph + grow-an-underline, ZERO HTML edits.
+       background-size underline is robust for both inline-in-sentence and flex. --- */
+.contact-channels .ch a[href^="tel:"],
+.info-row .ir-v a[href^="tel:"],
+.lede a[href^="tel:"],
+.prose p a[href^="tel:"] {
+  position: relative; white-space: nowrap;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat; background-position: 0 100%; background-size: 0% 1.5px;
+  transition: background-size 0.35s var(--ease), color 0.3s var(--ease);
+}
+.contact-channels .ch a[href^="tel:"]:hover, .contact-channels .ch a[href^="tel:"]:focus-visible,
+.info-row .ir-v a[href^="tel:"]:hover, .info-row .ir-v a[href^="tel:"]:focus-visible,
+.lede a[href^="tel:"]:hover, .lede a[href^="tel:"]:focus-visible,
+.prose p a[href^="tel:"]:hover, .prose p a[href^="tel:"]:focus-visible { background-size: 100% 1.5px; color: var(--gold-light); }
+/* standalone numbers (contact card / info row): flex glyph, accent-tinted + shrunk */
+.contact-channels .ch a[href^="tel:"],
+.info-row .ir-v a[href^="tel:"] { display: inline-flex; align-items: center; gap: 0.4em; }
+.contact-channels .ch a[href^="tel:"]::before,
+.info-row .ir-v a[href^="tel:"]::before {
+  content: ""; width: 0.82em; height: 0.82em; flex-shrink: 0; background-color: var(--gold);
+  -webkit-mask: var(--tel-mask) center / contain no-repeat; mask: var(--tel-mask) center / contain no-repeat;
+}
+/* in-sentence numbers (lede / legal prose): inline glyph keeps the text baseline */
+.lede a[href^="tel:"]::before,
+.prose p a[href^="tel:"]::before {
+  content: ""; display: inline-block; width: 0.9em; height: 0.9em; margin-right: 0.32em; vertical-align: -0.13em;
+  background-color: currentColor;
+  -webkit-mask: var(--tel-mask) center / contain no-repeat; mask: var(--tel-mask) center / contain no-repeat;
+}
+
+/* --- "Call …" buttons: family-resemblance handset glyph (no HTML edits) --- */
+.btn[href^="tel:"]::before {
+  content: ""; width: 16px; height: 16px; flex-shrink: 0; margin-right: -3px; background-color: currentColor;
+  -webkit-mask: var(--tel-mask) center / contain no-repeat; mask: var(--tel-mask) center / contain no-repeat;
+}
+
+/* --- keyboard focus: one accent ring on every variant (closes a site-wide gap) --- */
+a[href^="tel:"]:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 8px; }
+.nav-phone:focus-visible { border-radius: 999px; }
+a[href^="tel:"]:focus:not(:focus-visible) { outline: none; }
+
+/* --- coarse-pointer tap targets (WCAG 2.5.8) --- */
+@media (pointer: coarse) { .nav-phone, .tel-inline { min-height: 48px; } }
+
+/* --- reduced motion: keep the ring (instant), drop the lift/underline motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .nav-phone, .nav-phone .tel-ico, .tel-inline, .tel-inline .tel-ico,
+  .contact-channels .ch a[href^="tel:"], .info-row .ir-v a[href^="tel:"],
+  .lede a[href^="tel:"], .prose p a[href^="tel:"] { transition: none; }
+}

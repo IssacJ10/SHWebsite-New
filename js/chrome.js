@@ -10,6 +10,9 @@
   const active = document.body.getAttribute("data-active") || "";
   const P = document.body.getAttribute("data-prefix") || ""; // "" at root
 
+  // Shared handset glyph — prefixes every phone number so it reads as tap-to-call.
+  const PHONE_SVG = '<svg class="tel-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M6.6 10.8a12 12 0 0 0 5.6 5.6l1.9-1.9a1 1 0 0 1 1-.24 9.6 9.6 0 0 0 3 .48 1 1 0 0 1 1 1V19a1 1 0 0 1-1 1A15.5 15.5 0 0 1 4 5a1 1 0 0 1 1-1h2.3a1 1 0 0 1 1 1 9.6 9.6 0 0 0 .48 3 1 1 0 0 1-.24 1z"/></svg>';
+
   const areas = [
     { code: "ON", province: "Ontario", cities: [
       ["Scarborough", P + "scarborough.html"],
@@ -72,7 +75,7 @@
       </div>
     </nav>
     <div class="nav-right">
-      <a class="nav-phone" href="tel:+14379256546">437·925·6546</a>
+      <a class="nav-phone" href="tel:+14379256546" aria-label="Call us at (437) 925-6546">${PHONE_SVG}<span>437·925·6546</span></a>
       <a class="btn btn-gold nav-cta" href="${P}team.html" data-magnetic>Book Appointment</a>
       <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>`;
@@ -89,7 +92,7 @@
     <a href="${P}service-areas.html">Service Areas</a>
     <a href="${P || "index.html"}#contact">Contact</a>
     <div class="mm-foot">
-      <a href="tel:+14379256546">+1 (437) 925-6546</a>
+      <a class="tel-inline" href="tel:+14379256546" aria-label="Call us at (437) 925-6546">${PHONE_SVG}<span>+1 (437) 925-6546</span></a>
       <a href="mailto:info@shelevate.ca">info@shelevate.ca</a>
     </div>`;
   document.body.insertBefore(mm, header.nextSibling);
@@ -137,8 +140,8 @@
           <h4>Contact</h4>
           <ul>
             <li><a href="mailto:info@shelevate.ca">info@shelevate.ca</a></li>
-            <li><a href="tel:+14379256546">+1 (437) 925-6546</a></li>
-            <li><a href="tel:+19029198696">+1 (902) 919-8696</a></li>
+            <li><a class="tel-inline" href="tel:+14379256546" aria-label="Call us at (437) 925-6546">${PHONE_SVG}<span>+1 (437) 925-6546</span></a></li>
+            <li><a class="tel-inline" href="tel:+19029198696" aria-label="Call our Atlantic line at (902) 919-8696">${PHONE_SVG}<span>+1 (902) 919-8696</span></a></li>
             <li>36 Lee Centre Dr, Scarborough ON M1H 3K2</li>
           </ul>
         </div>
