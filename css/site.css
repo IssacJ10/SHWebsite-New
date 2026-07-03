@@ -817,6 +817,13 @@ em.gold, .gold-text { color: var(--gold-light); font-style: normal; }
   linear-gradient(180deg, transparent 0%, transparent 86%, rgba(255,255,255,0.9) 95%, #ffffff 100%),
   linear-gradient(90deg, rgba(6,14,34,0.95) 0%, rgba(6,14,34,0.7) 40%, rgba(10,22,51,0.4) 100%),
   linear-gradient(180deg, rgba(6,14,34,0.62) 0%, rgba(6,14,34,0.35) 34%, rgba(6,14,34,0.55) 70%, rgba(6,14,34,0.6) 100%); }
+/* Gradient hero backgrounds are already dark + carry their own glow — skip the
+   heavy photo darkening, keep only the left text-scrim + the bottom white fade
+   so the glow reads through on the right while headings stay legible. */
+.page-hero-bg.is-gradient img { filter: none; }
+.page-hero-bg.is-gradient::after { background:
+  linear-gradient(180deg, transparent 0%, transparent 86%, rgba(255,255,255,0.9) 95%, #ffffff 100%),
+  linear-gradient(90deg, rgba(6,14,34,0.74) 0%, rgba(6,14,34,0.40) 44%, rgba(6,14,34,0.06) 100%); }
 .page-hero-light { position: absolute; inset: 0; z-index: 1; pointer-events: none; mix-blend-mode: screen; background: radial-gradient(110% 80% at 78% 25%, rgba(150,185,230,0.15), transparent 55%); animation: lightPulse 10s ease-in-out infinite alternate; }
 .page-hero-inner { position: relative; z-index: 3; width: 100%; padding-top: 120px; }
 .breadcrumb { display: flex; align-items: center; gap: 10px; font-size: 0.78rem; color: var(--ivory-faint); margin-bottom: 28px; flex-wrap: wrap; }
