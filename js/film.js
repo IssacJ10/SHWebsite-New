@@ -79,54 +79,6 @@
     ticks.forEach((tk, i) => tk.classList.toggle("on", i <= active));
   }
 
-  // Phones / tablets / touch: DON'T pin. A pinned, scrubbed section fights the
-  // finger and feels heavy on touch. Instead the background is CSS-sticky and an
-  // IntersectionObserver swaps the active chapter image + reveals each text as it
-  // reaches mid-screen — native momentum scroll, zero scroll-jacking. Needs no
-  // GSAP (so it survives a ScrollTrigger load failure); under reduced-motion the
-  // CSS simply drops the fades and text appears as you scroll to it.
-  const lite = window.matchMedia("(max-width: 1024px)").matches ||
-               window.matchMedia("(pointer: coarse)").matches;
-  if (lite) {
-    imgs.forEach((im) => { im.style.transform = "none"; });
-    let cur = -1;
-    const setActive = (i) => {
-      if (i === cur) return;
-      cur = i;
-      imgs.forEach((im, k) => { im.style.opacity = k === i ? "1" : "0"; });
-      if (countCur) countCur.textContent = pad(i + 1);
-      if (progBar) progBar.style.width = (((i + 1) / N) * 100).toFixed(1) + "%";
-      ticks.forEach((tk, k) => tk.classList.toggle("on", k <= i));
-    };
-    // Cheap, PASSIVE scroll read (no preventDefault, no pin → zero scroll-jack):
-    // the chapter whose centre is nearest the viewport centre is active, and each
-    // reveals as it rises into view. rAF-throttled; DOM only written on a real
-    // chapter change. Bound to native scroll AND Lenis (if it's active), so it
-    // works on touch (Lenis off) and narrow desktop (Lenis on) alike.
-    const update = () => {
-      const vh = window.innerHeight, mid = vh / 2;
-      let best = 0, bestDist = Infinity;
-      texts.forEach((t, k) => {
-        const r = t.getBoundingClientRect();
-        const d = Math.abs((r.top + r.height / 2) - mid);
-        if (d < bestDist) { bestDist = d; best = k; }
-        if (r.top < vh * 0.82) t.classList.add("in");
-      });
-      setActive(best);
-    };
-    let ticking = false;
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => { update(); ticking = false; });
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-    if (window.__lenis && window.__lenis.on) window.__lenis.on("scroll", onScroll);
-    return;
-  }
-
   if (reduce || typeof ScrollTrigger === "undefined") {
     // static fallback — show first chapter
     paint(0.0001);
@@ -135,12 +87,17 @@
 
   gsap.registerPlugin(ScrollTrigger);
   paint(0);
+  // Phones/tablets/touch: shorter pin distance + snappier scrub so the film
+  // doesn't "hold" the scroll for 4+ screen-heights (the chaptered crossfade
+  // still plays, it just tracks the finger more closely and releases sooner).
+  const lite = window.matchMedia("(max-width: 1024px)").matches ||
+               window.matchMedia("(pointer: coarse)").matches;
   ScrollTrigger.create({
     trigger: ".film",
     start: "top top",
-    end: "+=" + (N * 110) + "%",
+    end: "+=" + (N * (lite ? 60 : 110)) + "%",
     pin: ".film-stage",
-    scrub: 0.6,
+    scrub: lite ? 0.35 : 0.6,
     onUpdate: (self) => paint(self.progress),
     onRefresh: (self) => paint(self.progress),
   });

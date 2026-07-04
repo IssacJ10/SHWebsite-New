@@ -1188,39 +1188,6 @@ em.gold, .gold-text { color: var(--gold-light); font-style: normal; }
 }
 
 /* =====================================================================
-   FILM SECTION on mobile / touch — unpinned "sticky scrollytelling".
-   A pinned, scrubbed section fights the finger and feels heavy on touch, so
-   here we DON'T pin: the background is position:sticky (native + GPU-smooth —
-   Lenis is off on touch) while each chapter scrolls naturally over it; film.js
-   swaps the active image + reveals each text as it reaches mid-screen. The
-   breakpoint mirrors film.js `lite` (≤1024px OR coarse pointer) so JS + CSS
-   always agree. Desktop keeps the pinned scrub — untouched.
-   ===================================================================== */
-@media (max-width: 1024px), (pointer: coarse) {
-  .film-stage { height: auto; overflow: visible; }
-  .film-bg { position: sticky; top: 0; height: 100svh; margin-bottom: -100svh; z-index: 0; }
-  .chapter-img { transition: opacity 0.9s var(--ease); }
-  /* fuller, even scrim so text stays legible over any chapter image mid-screen */
-  .chapter-img::after { background:
-    linear-gradient(180deg, rgba(6,12,26,0.55) 0%, rgba(6,12,26,0.60) 45%, rgba(6,12,26,0.82) 100%); }
-  .film-content { position: relative; inset: auto; z-index: 2; display: block; padding: 0 0 20svh; align-items: stretch; }
-  .chapter-text {
-    position: relative; left: auto; right: auto; top: auto; min-height: 0;
-    margin-top: 50svh;
-    opacity: 0; transform: translateY(30px);
-    transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
-  }
-  .chapter-text:first-child { margin-top: 34svh; }
-  .chapter-text.in { opacity: 1; transform: none; }
-  .film-hud { display: none; }
-}
-@media (max-width: 1024px) and (prefers-reduced-motion: reduce),
-       (pointer: coarse) and (prefers-reduced-motion: reduce) {
-  .chapter-text { transition: none; }
-  .chapter-img { transition: none; }
-}
-
-/* =====================================================================
    PREMIUM CARD INTERACTIONS — cursor-tracked 3D tilt + spotlight glow.
    Pointer/hover devices only. site.js feeds --mx/--my (cursor %) and
    --rx/--ry (tilt angle) per card.
